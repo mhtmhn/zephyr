@@ -1,0 +1,13 @@
+loadfile @BOARD_DIR@/support/at91bootstrap.elf
+w4 0xE001D0DC, 0x53594300
+w4 0xE001D100, 0xA5000008
+w4 0xE001C004, 0x00001000
+w4 0xE001D004, 0x00001000
+wreg cpsr, 0x000000D3
+setpc 0x100000
+g
+waithalt 5000
+loadfile @PROJECT_BINARY_DIR@/zephyr.elf
+setpc 0x60000000
+g
+q
