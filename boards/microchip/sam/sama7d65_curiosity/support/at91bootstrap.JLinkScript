@@ -1,0 +1,13 @@
+int ResetTarget(void)
+{
+    return 0;
+}
+
+void InitTarget(void) {
+  JTAG_ResetPin = 0;
+  SYS_Sleep(50);
+  JTAG_ResetPin = 1;
+  SYS_Sleep(100);
+  JTAG_AllowTAPReset=1;
+}
+
