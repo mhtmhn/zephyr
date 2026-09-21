@@ -74,6 +74,16 @@ static const struct arm_mmu_region mmu_regions[] = {
 	IF_ENABLED(DT_HAS_COMPAT_STATUS_OKAY(microchip_trng_g2_entropy),
 		   (MMU_REGION_FLAT_ENTRY("trng", TRNG_BASE_ADDRESS, 0x100,
 					  MT_STRONGLY_ORDERED | MPERM_R | MPERM_W),))
+
+	IF_ENABLED(DT_NODE_HAS_STATUS_OKAY(DT_NODELABEL(udphsa)),
+		(MMU_REGION_FLAT_ENTRY("udphsa",
+				       DT_REG_ADDR_BY_IDX(DT_NODELABEL(udphsa), 1),
+				       DT_REG_SIZE_BY_IDX(DT_NODELABEL(udphsa), 1),
+				       MT_STRONGLY_ORDERED | MPERM_R | MPERM_W),
+		 MMU_REGION_FLAT_ENTRY("udphsa_ram",
+				       DT_REG_ADDR_BY_IDX(DT_NODELABEL(udphsa), 0),
+				       DT_REG_SIZE_BY_IDX(DT_NODELABEL(udphsa), 0),
+				       MT_STRONGLY_ORDERED | MPERM_R | MPERM_W),))
 };
 
 const struct arm_mmu_config mmu_config = {
