@@ -7,5 +7,7 @@ config SOC_FAMILY_MICROCHIP_SAMA7
 	select MICROCHIP_SAM
 	select ARM
 	select CPU_CORTEX_A7
+	select CPU_HAS_NEON
+	select VFP_DP_D32_FP16_FMAC
 	select MMU
 	select CACHE_MANAGEMENT
